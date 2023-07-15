@@ -1,2 +1,2 @@
-./client/
-.idea
+.idea/
+__pycache__/
