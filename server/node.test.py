@@ -28,6 +28,28 @@ class TestNode(unittest.TestCase):
         self.assertEqual(child.parent, parent2)
         self.assertEqual(child.height, 1)
 
+    def test_no_cycles(self):
+        ceo = Node(id=1, name='CEO', is_manager=True, department='Executive')
+        cto = Node(id=2, name='CTO', is_manager=True, department='Technology')
+
+        # Adding child should work fine
+        ceo.add_child(cto)
+
+        # Trying to create cycle should raise an error
+        with self.assertRaises(ValueError):
+            cto.add_child(ceo)
+
+    def test_no_multiple_roots(self):
+        ceo1 = Node(id=1, name='CEO1', is_manager=True, department='Executive')
+        ceo2 = Node(id=2, name='CEO2', is_manager=True, department='Executive')
+
+        # Adding first root should work fine
+        ceo1.add_child(ceo2)
+
+        # Trying to add second root should raise an error
+        with self.assertRaises(ValueError):
+            ceo2.change_parent(ceo1)
+
 
 if __name__ == '__main__':
     unittest.main()
