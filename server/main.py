@@ -5,8 +5,19 @@ from utils import find_node
 from models.node_in import NodeIn
 from models.node import Node
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class ChangeParentInput(BaseModel):
@@ -16,8 +27,7 @@ class ChangeParentInput(BaseModel):
 @app.get("/children/")
 def read_children(parent_id: Optional[int] = None):
     if parent_id is None:
-        # If no id is provided, return root's children
-        return [child.dict_to_client() for child in root.children]
+        return [root.dict_to_client()]
 
     # Lookup parent node using find_node function
     parent = find_node(root, parent_id)

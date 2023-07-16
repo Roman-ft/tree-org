@@ -55,7 +55,7 @@ class Node(BaseModel):
             "programming_language": self.programming_language,
             "children_length": len(self.children),
             "height": self.height,
-            "parent_id": self.parent.id
+            "parent_id": self.parent.id if self.parent is not None else None
         }
 
     class Config:

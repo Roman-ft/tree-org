@@ -9,10 +9,10 @@ class TestFastAPI(unittest.TestCase):
     def setUp(self):
         self.client = TestClient(app)
 
-    def test_root_children(self):
+    def test_root(self):
         response = self.client.get("/children/")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.json()), len(root.children))
+        self.assertEqual(response.json(), [root.dict_to_client()])
 
     def test_node_children(self):
         # Test for a node that has children
