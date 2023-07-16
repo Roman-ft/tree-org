@@ -20,12 +20,17 @@ class TestNode(unittest.TestCase):
         self.assertEqual(parent.children[0], child)
 
     def test_change_parent(self):
+        # A - B - C, C changes parent to A
         parent1 = Node(id=0, name='Grace Hopper', is_manager=True, department='Computer Science')
         parent2 = Node(id=1, name='Alan Turing', is_manager=True, department='Mathematics')
         child = Node(id=2, name='Ada Lovelace', is_developer=True, programming_language='Babbage Engine')
-        parent1.add_child(child)
-        child.change_parent(parent2)
-        self.assertEqual(child.parent, parent2)
+
+        parent1.add_child(parent2)
+        parent2.add_child(child)
+
+        child.change_parent(parent1)
+
+        self.assertEqual(child.parent, parent1)
         self.assertEqual(child.height, 1)
 
     def test_no_cycles(self):
@@ -48,7 +53,7 @@ class TestNode(unittest.TestCase):
 
         # Trying to add second root should raise an error
         with self.assertRaises(ValueError):
-            ceo2.change_parent(ceo1)
+            ceo2.change_parent(None)
 
 
 if __name__ == '__main__':

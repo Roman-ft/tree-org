@@ -1,4 +1,4 @@
-from node import Node
+from models.node import Node
 
 
 # Create nodes for the company hierarchy
