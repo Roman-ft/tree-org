@@ -1,11 +1,11 @@
 import { calculateChildrenLayout } from "./utils";
 import {
-  NODE_WIDTH,
   HORIZONTAL_SPACING,
   NODE_HEIGHT,
+  NODE_WIDTH,
+  NodeTree,
   VERTICAL_SPACING,
-} from "@/components/TreeOrg/TreeOrg.types";
-import { NodeTree } from "@/types/node";
+} from "@/types/node";
 
 describe("calculateChildrenLayout", () => {
   it("updates layout correctly when adding more children", () => {

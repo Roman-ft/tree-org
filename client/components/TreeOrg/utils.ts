@@ -1,10 +1,10 @@
-import { NodeTree as NodeTreeType } from "@/types/node";
 import {
   HORIZONTAL_SPACING,
   NODE_HEIGHT,
   NODE_WIDTH,
+  NodeTree as NodeTreeType,
   VERTICAL_SPACING,
-} from "@/components/TreeOrg/TreeOrg.types";
+} from "@/types/node";
 
 export const calculateChildrenLayout = (
   node: NodeTreeType,

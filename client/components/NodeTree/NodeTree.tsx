@@ -1,16 +1,13 @@
 import { Fragment } from "react";
 import styles from "./NodeTree.module.css";
 import { NodeTree } from "@/types/node";
+import { NODE_WIDTH, NODE_HEIGHT } from "@/types/node";
 
 const NodeTree = ({
   node,
-  width,
-  height,
   onNodeClick = () => {},
 }: {
   node: NodeTree;
-  width: number;
-  height: number;
   onNodeClick: (node) => void;
 }) => {
   const { x, y } = node;
@@ -20,32 +17,36 @@ const NodeTree = ({
     <>
       <button
         onClick={() => node.childrenLength && onNodeClick(node)}
-        className={`${styles.nodeTree} ${node.children && styles.expanded} ${
+        className={`${styles.button} ${node.children && styles.expanded} ${
           node.childrenLength && !node.children && styles.canExpand
         }`}
         style={{
           transform: `translate(${x}px, ${y}px)`,
-          width,
-          height,
+          NODE_WIDTH,
+          NODE_HEIGHT,
         }}
       >
-        <div className="node-content">
+        <div>
           <strong className={styles.name}>{node.name}</strong>
           {node.isManager && <p>Manager in {node.department}</p>}
           {node.isDeveloper && (
             <p>Developer skilled in {node.programmingLanguage}</p>
           )}
         </div>
+
+        <div
+          className={styles.connectorH}
+          style={{
+            height: 100,
+          }}
+        />
+        <div className={styles.connectorV} />
       </button>
+
       {children.map((child) => {
         return (
           <Fragment key={child.id}>
-            <NodeTree
-              node={child}
-              width={width}
-              height={height}
-              onNodeClick={onNodeClick}
-            />
+            <NodeTree node={child} onNodeClick={onNodeClick} />
           </Fragment>
         );
       })}

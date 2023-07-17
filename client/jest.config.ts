@@ -8,6 +8,7 @@ const config: Config.InitialOptions = {
   modulePaths: ["<rootDir>"],
   moduleNameMapper: {
     "^@/components(.*)$": "<rootDir>/components/$1",
+    "^@/types(.*)$": "<rootDir>/types/$1",
   },
 };
 export default config;

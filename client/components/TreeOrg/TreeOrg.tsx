@@ -5,8 +5,6 @@ import styles from "./TreeOrg.module.css";
 import { fetchChildren } from "@/api/node";
 import { calculateChildrenLayout } from "@/components/TreeOrg/utils";
 
-import { NODE_HEIGHT, NODE_WIDTH } from "@/components/TreeOrg/TreeOrg.types";
-
 const loadChildren = async (node: NodeTreeType) => {
   node.children = await fetchChildren(node.id);
   node.children.map((child) => {
@@ -49,12 +47,7 @@ const TreeOrg = () => {
 
   return (
     <div className={styles.TreeOrg}>
-      <NodeTree
-        onNodeClick={toggleChildren}
-        node={rootNode}
-        width={NODE_WIDTH}
-        height={NODE_HEIGHT}
-      />
+      <NodeTree onNodeClick={toggleChildren} node={rootNode} />
     </div>
   );
 };
