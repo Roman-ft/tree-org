@@ -1,6 +1,6 @@
 export interface Node {
   id: number;
-  name: string
+  name: string;
   parentId: number | null;
   isManager: boolean;
   department: string | null;
@@ -13,7 +13,6 @@ export interface Node {
 export interface NodeTree extends Node {
   x: number;
   y: number;
-  children: NodeTree[];
-  openChildren: number;
-  parent: NodeTree
+  children?: NodeTree[];
+  parent?: NodeTree;
 }

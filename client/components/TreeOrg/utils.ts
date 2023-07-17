@@ -15,7 +15,7 @@ export const calculateChildrenLayout = (
   node.x = x;
 
   node.y = node.children
-    ? (node.parent?.y + NODE_HEIGHT + VERTICAL_SPACING) | 0
+    ? (node.parent?.y || 0) + NODE_HEIGHT + VERTICAL_SPACING
     : y;
 
   if (node.children) {
@@ -34,7 +34,7 @@ export const calculateChildrenLayout = (
 };
 
 const calculateLeftSiblingSubtreeWidth = (node: NodeTreeType): number => {
-  if (!node.parent) {
+  if (!node.parent || !node.parent.children) {
     return 0;
   }
 

@@ -36,6 +36,7 @@ const TreeOrg = () => {
     }
 
     setRootNode(() => window.structuredClone(rootNode));
+    // add some animation
     setTimeout(() => {
       rootNode && calculateChildrenLayout(rootNode);
       setRootNode(() => window.structuredClone(rootNode));
