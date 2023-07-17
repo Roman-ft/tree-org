@@ -19,10 +19,8 @@ export const calculateChildrenLayout = (
     : y;
 
   if (node.children) {
-    node.x =
-      node.x +
-      (calculateLeftSiblingSubtreeWidth(node) + 1) *
-        (NODE_WIDTH + HORIZONTAL_SPACING);
+    node.openLeftChildren = calculateLeftSiblingSubtreeWidth(node) + 1;
+    node.x = node.x + node.openLeftChildren * (NODE_WIDTH + HORIZONTAL_SPACING);
     let childX = node.x;
     let childY = node.y;
 

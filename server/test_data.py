@@ -8,6 +8,7 @@ cfo = Node(id=11123, name='CFO', is_manager=True, department='Finance')
 developer1 = Node(id=4, name='Developer1', is_developer=True, programming_language='Python')
 developer2 = Node(id=5, name='Developer2', is_developer=True, programming_language='JavaScript')
 dev_manager = Node(id=3374, name='Developer Manager', is_developer=True, programming_language='JavaScript')
+cfo_manager = Node(id=33744, name='Accountant')
 dev_dev_manager = Node(id=3375, name='Developer Managed by Manager', is_developer=True, programming_language='Ruby')
 person = Node(id=17, name="Manager Mark")
 
@@ -21,6 +22,7 @@ cto.add_child(dev_manager)
 dev_manager.add_child(dev_dev_manager)
 coo.add_child(person)
 
+cfo.add_child(cfo_manager)
 # Generate and add more developers
 for i in range(6, 16):
     developer = Node(id=i, name=f'Developer{i}', is_developer=True,

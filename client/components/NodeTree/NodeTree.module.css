@@ -1,7 +1,8 @@
 .button {
   transition: 0.5s ease-in-out transform, background-color;
+  transition-delay: 0.2s;
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   background: #fff;
   border-radius: var(--border-radius);
   border: 1px solid var(--gray-light);
@@ -13,7 +14,7 @@
 .expanded {
   cursor: pointer;
   background: var(--gray-light);
-  z-index: 1;
+  z-index: 2;
 }
 
 .expanded:hover {
@@ -51,12 +52,21 @@
   display: block;
 }
 
-.connectorH {
+.connectorH,
+.connectorV {
+  transition: 0.5s ease-in-out;
   position: absolute;
-  width: 1px;
+  left: 0;
+  width: 2px;
   z-index: -1;
-  background: var(--gray-dark);
+  background: #000;
+  bottom: 100%;
 }
 
-.connectorV {
+.connectorH {
+  transition-delay: 0.5s;
+  left: auto;
+  bottom: auto;
+  position: absolute;
+  height: 2px;
 }

@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import styles from "./NodeTree.module.css";
-import { NodeTree } from "@/types/node";
+import { HORIZONTAL_SPACING, VERTICAL_SPACING, NodeTree } from "@/types/node";
 import { NODE_WIDTH, NODE_HEIGHT } from "@/types/node";
 
 const NodeTree = ({
@@ -15,6 +15,14 @@ const NodeTree = ({
 
   return (
     <>
+      {children.map((child) => {
+        return (
+          <Fragment key={child.id}>
+            <NodeTree node={child} onNodeClick={onNodeClick} />
+          </Fragment>
+        );
+      })}
+
       <button
         onClick={() => node.childrenLength && onNodeClick(node)}
         className={`${styles.button} ${node.children && styles.expanded} ${
@@ -22,8 +30,8 @@ const NodeTree = ({
         }`}
         style={{
           transform: `translate(${x}px, ${y}px)`,
-          NODE_WIDTH,
-          NODE_HEIGHT,
+          width: NODE_WIDTH,
+          height: NODE_HEIGHT,
         }}
       >
         <div>
@@ -34,22 +42,33 @@ const NodeTree = ({
           )}
         </div>
 
-        <div
-          className={styles.connectorH}
-          style={{
-            height: 100,
-          }}
-        />
-        <div className={styles.connectorV} />
-      </button>
+        {node.parent && (
+          <div
+            className={styles.connectorV}
+            style={{
+              height: node.children
+                ? NODE_HEIGHT / 2 + VERTICAL_SPACING
+                : VERTICAL_SPACING,
+              transform: `translate(${NODE_WIDTH / 2 - 1}px, 0)`,
+            }}
+          />
+        )}
 
-      {children.map((child) => {
-        return (
-          <Fragment key={child.id}>
-            <NodeTree node={child} onNodeClick={onNodeClick} />
-          </Fragment>
-        );
-      })}
+        {node.parent && (
+          <div
+            className={styles.connectorH}
+            style={{
+              right: NODE_WIDTH / 2 - 1,
+              width: node.children
+                ? (node.openLeftChildren || 0) * NODE_WIDTH -
+                  NODE_WIDTH / 2 +
+                  HORIZONTAL_SPACING
+                : 0,
+              top: `-${NODE_HEIGHT / 2 + VERTICAL_SPACING}px`,
+            }}
+          />
+        )}
+      </button>
     </>
   );
 };

@@ -14,6 +14,7 @@ export interface NodeTree extends Node {
   x: number;
   y: number;
   children?: NodeTree[];
+  openLeftChildren?: number;
   parent?: NodeTree;
 }
 
