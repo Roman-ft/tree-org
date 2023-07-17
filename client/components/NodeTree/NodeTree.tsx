@@ -20,24 +20,21 @@ const NodeTree = ({
     <>
       <button
         onClick={() => node.childrenLength && onNodeClick(node)}
-        className={styles.nodeTree}
+        className={`${styles.nodeTree} ${node.children && styles.expanded} ${
+          node.childrenLength && !node.children && styles.canExpand
+        }`}
         style={{
           transform: `translate(${x}px, ${y}px)`,
           width,
           height,
-          background: node.children ? '#aaa' : '#fff'
         }}
       >
         <div className="node-content">
-          <div>{node.name}</div>
-          <div>height: {node.height}</div>
-          <div>children length: {node.childrenLength}</div>
-          <div>Open {node.openChildren}</div>
-
-          <div>parent: x{node.parent?.x}, y{node.parent?.y}</div>
-
-          <div>x{node.x}, y{node.y}</div>
-
+          <strong className={styles.name}>{node.name}</strong>
+          {node.isManager && <p>Manager in {node.department}</p>}
+          {node.isDeveloper && (
+            <p>Developer skilled in {node.programmingLanguage}</p>
+          )}
         </div>
       </button>
       {children.map((child) => {
