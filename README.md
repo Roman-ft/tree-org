@@ -2,11 +2,10 @@
 
 Requirements
 - Node 16+
-- Python 3 (virtual env)
+- Python 3
 
 ##  Client
 ```
-
 cd client
 npm install
 npm run dev
@@ -18,12 +17,12 @@ npm run dev
 
 ## Server
 
-assuming `python` aliases to `python3`
-
 ```
 cd server
-python -m venv env
+python3 -m venv env
 source ./env/bin/activate
 pip install -r requirements.txt
 uvicorn main:app --reload
 ```
+
+open http://localhost:3000
