@@ -11,8 +11,9 @@ export interface Node {
 }
 
 export interface NodeTree extends Node {
-  isActive: boolean;
-  isVisible: boolean;
+  x: number;
+  y: number;
   children: NodeTree[];
+  openChildren: number;
   parent: NodeTree
 }

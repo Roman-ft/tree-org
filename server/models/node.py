@@ -49,13 +49,13 @@ class Node(BaseModel):
         return {
             "id": self.id,
             "name": self.name,
-            "is_manager": self.is_manager,
+            "isManager": self.is_manager,
             "department": self.department,
-            "is_developer": self.is_developer,
-            "programming_language": self.programming_language,
-            "children_length": len(self.children),
+            "isDeveloper": self.is_developer,
+            "programmingLanguage": self.programming_language,
+            "childrenLength": len(self.children),
             "height": self.height,
-            "parent_id": self.parent.id if self.parent is not None else None
+            "parentId": self.parent.id if self.parent is not None else None
         }
 
     class Config:
